@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:aplico/app.dart';
-import 'package:aplico/main_config.dart';
+import 'package:apliko/app.dart';
+import 'package:apliko/main_config.dart';
 
 void main() async {
   await prepareAppConfigAsync();
 
   runApp(const MainApp(env: 'production'));
 }
-//rename
+//renamegf
