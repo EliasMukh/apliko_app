@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:aplico/core/logical/constaints.dart';
-import 'package:aplico/core/utils/funcs.dart';
+import 'package:apliko/core/logical/constaints.dart';
+import 'package:apliko/core/utils/funcs.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 

@@ -1,6 +1,6 @@
-import 'package:aplico/core/utils/funcs.dart';
-import 'package:aplico/core/utils/internet_info.dart';
-import 'package:aplico/features/authentication/data/data%20sources/auth_remote_ds.dart';
+import 'package:apliko/core/utils/funcs.dart';
+import 'package:apliko/core/utils/internet_info.dart';
+import 'package:apliko/features/authentication/data/data%20sources/auth_remote_ds.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -11,7 +11,6 @@ Future<Either<Failure, T>> sendRequest<T>(
   Future<T> Function() call, {
   Function(T)? cacheCall,
   bool checkToRevokSession = true,
-  
 }) async {
   if (InternetInfo.isConnect) {
     try {

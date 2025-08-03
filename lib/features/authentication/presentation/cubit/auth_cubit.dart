@@ -2,19 +2,19 @@
 
 import 'dart:developer';
 
-import 'package:aplico/core/logical/errors/failures.dart'
+import 'package:apliko/core/logical/errors/failures.dart'
     show HttpFailure, InternetFailure, ServerFailure;
-import 'package:aplico/core/utils/extensions.dart';
-import 'package:aplico/core/utils/funcs.dart';
-import 'package:aplico/core/utils/user_info.dart';
+import 'package:apliko/core/utils/extensions.dart';
+import 'package:apliko/core/utils/funcs.dart';
+import 'package:apliko/core/utils/user_info.dart';
 
-import 'package:aplico/features/authentication/domain/models/device.dart'
+import 'package:apliko/features/authentication/domain/models/device.dart'
     show DeviceModel;
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:aplico/core/logical/enums/login_type.dart';
+import 'package:apliko/core/logical/enums/login_type.dart';
 import '../../../../core/logical/errors/error_model.dart';
 import '../../domain/models/user.dart';
 

@@ -1,8 +1,8 @@
-import 'package:aplico/models/about_project_data.dart';
+import 'package:apliko/models/about_project_data.dart';
 import 'package:flutter/material.dart';
-import 'package:aplico/features/authentication/presentation/widgets/constants.dart';
+import 'package:apliko/features/authentication/presentation/widgets/constants.dart';
 
-import 'package:aplico/core/UI/widgets/about_project.dart';
+import 'package:apliko/core/UI/widgets/about_project.dart';
 
 // ignore: camel_case_types
 class aboutProject extends StatelessWidget {

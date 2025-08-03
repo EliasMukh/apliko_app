@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:aplico/core/utils/funcs.dart';
-import 'package:aplico/core/utils/lang.dart';
-import 'package:aplico/core/utils/user_info.dart';
+import 'package:apliko/core/utils/funcs.dart';
+import 'package:apliko/core/utils/lang.dart';
+import 'package:apliko/core/utils/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';

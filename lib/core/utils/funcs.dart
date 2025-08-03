@@ -1,7 +1,7 @@
-import 'package:aplico/core/logical/constaints.dart';
-import 'package:aplico/core/logical/errors/error_model.dart';
-import 'package:aplico/core/logical/errors/failures.dart';
-import 'package:aplico/core/logical/urls.dart';
+import 'package:apliko/core/logical/constaints.dart';
+import 'package:apliko/core/logical/errors/error_model.dart';
+import 'package:apliko/core/logical/errors/failures.dart';
+import 'package:apliko/core/logical/urls.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

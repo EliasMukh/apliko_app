@@ -1,7 +1,7 @@
 // ignore: unnecessary_import
-import 'package:aplico/core/utils/extensions.dart';
+import 'package:apliko/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
-import 'package:aplico/index.dart';
+import 'package:apliko/index.dart';
 import '../widgets/custom_widgets/custom_widgets.dart';
 
 class TemplateDialog extends StatelessWidget {

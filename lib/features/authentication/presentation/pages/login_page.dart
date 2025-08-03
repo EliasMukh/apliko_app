@@ -2,11 +2,11 @@
 
 import 'dart:developer';
 
-import 'package:aplico/core/UI/router/router.gr.dart';
-import 'package:aplico/core/UI/widgets/about_projects.dart';
-import 'package:aplico/core/UI/widgets/kits.dart';
-import 'package:aplico/features/authentication/presentation/widgets/constants.dart';
-import 'package:aplico/index.dart';
+import 'package:apliko/core/UI/router/router.gr.dart';
+import 'package:apliko/core/UI/widgets/about_projects.dart';
+import 'package:apliko/core/UI/widgets/kits.dart';
+import 'package:apliko/features/authentication/presentation/widgets/constants.dart';
+import 'package:apliko/index.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

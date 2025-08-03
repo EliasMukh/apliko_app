@@ -9,17 +9,17 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:aplico/features/authentication/domain/models/device.dart'
+import 'package:apliko/features/authentication/domain/models/device.dart'
     as _i8;
-import 'package:aplico/features/authentication/presentation/pages/DeviceDetailsPage.dart'
+import 'package:apliko/features/authentication/presentation/pages/DeviceDetailsPage.dart'
     as _i1;
-import 'package:aplico/features/authentication/presentation/pages/forget_password.dart'
+import 'package:apliko/features/authentication/presentation/pages/forget_password.dart'
     as _i2;
-import 'package:aplico/features/authentication/presentation/pages/home_page.dart'
+import 'package:apliko/features/authentication/presentation/pages/home_page.dart'
     as _i3;
-import 'package:aplico/features/authentication/presentation/pages/login_page.dart'
+import 'package:apliko/features/authentication/presentation/pages/login_page.dart'
     as _i5;
-import 'package:aplico/init_page.dart' as _i4;
+import 'package:apliko/init_page.dart' as _i4;
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 

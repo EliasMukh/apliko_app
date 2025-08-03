@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously, duplicate_ignore, deprecated_member_use
 
-import 'package:aplico/core/UI/router/router.gr.dart';
-import 'package:aplico/core/UI/styles/styles.dart';
+import 'package:apliko/core/UI/router/router.gr.dart';
+import 'package:apliko/core/UI/styles/styles.dart';
 
-import 'package:aplico/features/authentication/domain/models/device.dart';
-import 'package:aplico/features/authentication/presentation/cubit/auth_cubit.dart'
+import 'package:apliko/features/authentication/domain/models/device.dart';
+import 'package:apliko/features/authentication/presentation/cubit/auth_cubit.dart'
     show AuthCubit;
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';

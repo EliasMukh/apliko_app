@@ -1,8 +1,8 @@
-import 'package:aplico/core/utils/extensions.dart';
+import 'package:apliko/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:aplico/core/UI/styles/styles.dart';
-import 'package:aplico/core/UI/widgets/custom_widgets/custom_widgets.dart';
+import 'package:apliko/core/UI/styles/styles.dart';
+import 'package:apliko/core/UI/widgets/custom_widgets/custom_widgets.dart';
 import 'package:styled_widget/styled_widget.dart';
 
 class EmptyStateWidget extends StatelessWidget {

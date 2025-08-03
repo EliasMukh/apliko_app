@@ -1,8 +1,8 @@
-import 'package:aplico/core/utils/lang.dart';
+import 'package:apliko/core/utils/lang.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:aplico/index.dart';
+import 'package:apliko/index.dart';
 
 class CustomBackButton extends StatelessWidget {
   // ignore: use_key_in_widget_constructors

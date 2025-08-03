@@ -1,5 +1,5 @@
 // ignore: unnecessary_import
-import 'package:aplico/core/utils/extensions.dart';
+import 'package:apliko/core/utils/extensions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../index.dart';

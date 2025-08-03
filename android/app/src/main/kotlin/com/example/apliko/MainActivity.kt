@@ -1,4 +1,4 @@
-package com.elias.apliko
+package com.example.apliko
 
 import io.flutter.embedding.android.FlutterActivity
 

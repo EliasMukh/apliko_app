@@ -1,10 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors
 
-import 'package:aplico/core/utils/validator.dart';
+import 'package:apliko/core/utils/validator.dart';
 import 'package:easy_localization/easy_localization.dart' as localization;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:aplico/index.dart';
+import 'package:apliko/index.dart';
 import '../../../logical/errors/error_model.dart';
 // ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';

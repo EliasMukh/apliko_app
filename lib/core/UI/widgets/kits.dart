@@ -1,10 +1,10 @@
 // ignore_for_file: camel_case_types
 
-import 'package:aplico/core/UI/widgets/kit.dart';
+import 'package:apliko/core/UI/widgets/kit.dart';
 
-import 'package:aplico/models/kit_data.dart';
+import 'package:apliko/models/kit_data.dart';
 import 'package:flutter/material.dart';
-import 'package:aplico/features/authentication/presentation/widgets/constants.dart';
+import 'package:apliko/features/authentication/presentation/widgets/constants.dart';
 
 class kit extends StatelessWidget {
   const kit({super.key});

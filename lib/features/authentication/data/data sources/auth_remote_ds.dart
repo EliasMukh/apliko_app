@@ -1,9 +1,9 @@
-import 'package:aplico/core/utils/funcs.dart';
-import 'package:aplico/core/utils/user_info.dart';
+import 'package:apliko/core/utils/funcs.dart';
+import 'package:apliko/core/utils/user_info.dart';
 import 'package:dio/dio.dart';
 
 import 'package:injectable/injectable.dart';
-import 'package:aplico/core/logical/enums/login_type.dart';
+import 'package:apliko/core/logical/enums/login_type.dart';
 import '../../../../core/logical/urls.dart';
 import '../../domain/models/auth_params.dart';
 import '../../domain/models/user.dart';

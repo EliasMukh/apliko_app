@@ -1,7 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors
 
 import 'package:auto_route/auto_route.dart';
-import 'package:aplico/core/UI/widgets/custom_widgets/custom_widgets.dart';
+import 'package:apliko/core/UI/widgets/custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/UI/widgets/loading_widget.dart';

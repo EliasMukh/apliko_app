@@ -1,10 +1,10 @@
 // ignore_for_file: curly_braces_in_flow_control_structures, unused_element
 
 import 'dart:io';
-import 'package:aplico/core/logical/constaints.dart';
-import 'package:aplico/core/utils/extensions.dart';
-import 'package:aplico/core/utils/funcs.dart';
-import 'package:aplico/core/utils/user_info.dart';
+import 'package:apliko/core/logical/constaints.dart';
+import 'package:apliko/core/utils/extensions.dart';
+import 'package:apliko/core/utils/funcs.dart';
+import 'package:apliko/core/utils/user_info.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';

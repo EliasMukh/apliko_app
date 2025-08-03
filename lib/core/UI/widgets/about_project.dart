@@ -1,8 +1,8 @@
 // ignore_for_file: camel_case_types, use_super_parameters
 
-import 'package:aplico/models/about_project_data.dart';
+import 'package:apliko/models/about_project_data.dart';
 import 'package:flutter/material.dart';
-import 'package:aplico/features/authentication/presentation/widgets/constants.dart';
+import 'package:apliko/features/authentication/presentation/widgets/constants.dart';
 
 class aboutProjectCard extends StatelessWidget {
   const aboutProjectCard({Key? key, required this.recommendation})

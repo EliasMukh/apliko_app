@@ -1,6 +1,6 @@
-import 'package:aplico/core/logical/abstract/models.dart';
-import 'package:aplico/core/logical/enums/login_type.dart';
-import 'package:aplico/features/authentication/domain/models/device.dart';
+import 'package:apliko/core/logical/abstract/models.dart';
+import 'package:apliko/core/logical/enums/login_type.dart';
+import 'package:apliko/features/authentication/domain/models/device.dart';
 
 import '../models/auth_params.dart';
 import '../models/user.dart';

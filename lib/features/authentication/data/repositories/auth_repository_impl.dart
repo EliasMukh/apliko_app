@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:aplico/features/authentication/domain/models/device.dart';
+import 'package:apliko/features/authentication/domain/models/device.dart';
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:injectable/injectable.dart';
-import 'package:aplico/core/logical/abstract/models.dart';
-import 'package:aplico/core/logical/enums/login_type.dart';
+import 'package:apliko/core/logical/abstract/models.dart';
+import 'package:apliko/core/logical/enums/login_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/logical/abstract/repository_mixin.dart';

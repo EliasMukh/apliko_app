@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: unused_import
-import 'package:aplico/core/UI/styles/styles.dart';
-import 'package:aplico/features/authentication/domain/models/device.dart';
-import 'package:aplico/features/authentication/presentation/cubit/auth_cubit.dart';
+import 'package:apliko/core/UI/styles/styles.dart';
+import 'package:apliko/features/authentication/domain/models/device.dart';
+import 'package:apliko/features/authentication/presentation/cubit/auth_cubit.dart';
 
 @RoutePage()
 class DeviceDetailsPage extends StatefulWidget {

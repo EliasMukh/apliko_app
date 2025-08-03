@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:aplico/core/logical/constaints.dart';
+import 'package:apliko/core/logical/constaints.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import 'funcs.dart';

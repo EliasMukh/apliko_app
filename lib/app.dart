@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:aplico/core/UI/router/router.dart';
+import 'package:apliko/core/UI/router/router.dart';
 
 import 'core/UI/styles/colors.dart';
 import 'core/utils/lang.dart';

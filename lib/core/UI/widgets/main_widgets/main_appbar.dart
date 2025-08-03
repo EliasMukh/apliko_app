@@ -1,6 +1,6 @@
-import 'package:aplico/core/UI/styles/styles.dart';
-import 'package:aplico/core/UI/widgets/back_button.dart';
-import 'package:aplico/core/UI/widgets/custom_widgets/custom_widgets.dart';
+import 'package:apliko/core/UI/styles/styles.dart';
+import 'package:apliko/core/UI/widgets/back_button.dart';
+import 'package:apliko/core/UI/widgets/custom_widgets/custom_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:styled_widget/styled_widget.dart';

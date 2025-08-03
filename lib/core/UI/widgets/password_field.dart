@@ -1,4 +1,4 @@
-import 'package:aplico/core/utils/validator.dart';
+import 'package:apliko/core/utils/validator.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter/foundation.dart';
