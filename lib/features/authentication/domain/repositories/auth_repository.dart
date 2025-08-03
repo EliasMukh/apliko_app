@@ -1,0 +1,34 @@
+import 'package:aplico/core/logical/abstract/models.dart';
+import 'package:aplico/core/logical/enums/login_type.dart';
+import 'package:aplico/features/authentication/domain/models/device.dart';
+
+import '../models/auth_params.dart';
+import '../models/user.dart';
+
+abstract class IAuthRepository {
+  FutureEither<String> getDeviceRegistrationKey(String deviceId);
+  FutureEither<Map<String, dynamic>> getSupersetDashboardLink(String deviceId);
+  FutureEither<UserModel> login(AuthParams params);
+  FutureEither<UserModel> loginSocial(LoginSocialType type);
+  FutureEither<UserModel> register(AuthParams params);
+  FutureEither<DeviceModel> addDevice(DeviceModel params);
+  FutureEither<List<Map<String, dynamic>>> getDevices();
+  FutureEither<bool> refreshToken();
+  FutureEither<UserModel> updateProfile(UserModel newUserModel);
+  FutureEither<Map> uploadImage(String path);
+  FutureEither<UserModel> getProfile();
+  FutureEither<bool> changePassword(AuthParams params);
+  FutureEither<bool> changeEmail(AuthParams params);
+  FutureEither<bool> resendEmail(AuthParams params);
+  FutureEither<bool> resetPassword(String email);
+  FutureEither<bool> logout();
+  bool tryAutoLogin();
+  // إضافة هذا السطر في abstract class IAuthRepository
+  FutureEither<bool> grantDeviceAccess(
+    String deviceId,
+    String email,
+    String rights,
+  );
+  Future<void> cacheUser(UserModel user);
+  FutureEither<UserModel> getCachedUser();
+}
