@@ -293,3 +293,4 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.gotProfile(UserInfo.user!));
   }
 }
+//test
