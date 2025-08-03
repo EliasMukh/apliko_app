@@ -7,4 +7,3 @@ class HomeState with _$HomeState {
   const factory HomeState.error(String message) = _Error;
   const factory HomeState.gotData(List data) = _GotData;
 }
-//test//fsdfdsf
