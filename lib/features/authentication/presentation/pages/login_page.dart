@@ -815,6 +815,25 @@ class _LoginPageState extends State<LoginPage>
               //   ),
               SizedBox(height: 10),
 
+              if (!isRegister)
+                Align(
+                  //  alignment: AlignmentDirectional.bottomEnd,
+                  alignment: AlignmentDirectional.bottomStart,
+                  child: TextButton(
+                    onPressed: () {
+                      context.pushRoute(const ForgetPasswordRoute());
+                    },
+                    child: Text(
+                      'Forget Password',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.7),
+                        fontSize: 13,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ),
+
               // Align(
               //   alignment: AlignmentDirectional.bottomEnd,
               //   child: AnimatedContainer(

@@ -15,7 +15,9 @@ const deleteAccountUrl = '$_apiUrl/accounts/auth/basic/delete-user-account';
 const refreshTokenUrl = '$_apiUrl/accounts/session-reactivate/';
 const profileUrl = '$_apiUrl/accounts/profile/user-profile';
 const resetPasswordUrl = '$_apiUrl/email-sender/send-reset-password-email';
-
+//! Password Recovery
+const recoverPasswordUrl = '$_apiUrl/security/recoverpassword';
+const submitRecoverPasswordUrl = '$_apiUrl/security/recoverpassword/submit';
 //! Devices
 const getDevicesUrl = '$_apiUrl/devices'; // GET - للحصول على قائمة الأجهزة
 const addDeviceUrl = '$_apiUrl/devices'; // POST - لإضافة جهاز جديد

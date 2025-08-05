@@ -4,8 +4,12 @@ import 'package:apliko/features/authentication/domain/models/device.dart';
 
 import '../models/auth_params.dart';
 import '../models/user.dart';
+import '../models/recover_password_params.dart';
 
 abstract class IAuthRepository {
+  FutureEither<bool> recoverPassword(RecoverPasswordParams params);
+  FutureEither<bool> submitRecoverPassword(SubmitRecoverPasswordParams params);
+
   FutureEither<String> getDeviceRegistrationKey(String deviceId);
   FutureEither<Map<String, dynamic>> getSupersetDashboardLink(String deviceId);
   FutureEither<UserModel> login(AuthParams params);

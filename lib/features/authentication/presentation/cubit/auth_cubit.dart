@@ -20,6 +20,7 @@ import '../../domain/models/user.dart';
 
 import '../../domain/models/auth_params.dart';
 import '../../domain/repositories/auth_repository.dart';
+import '../../domain/models/recover_password_params.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
@@ -30,6 +31,29 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._repo) : super(const AuthState.initial());
 
   void reset() {}
+
+  Future<void> recoverPassword(String email) async {
+    emit(const AuthState.loading());
+    final params = RecoverPasswordParams(email: email);
+    final either = await _repo.recoverPassword(params);
+    either.fold(
+      (error) => emit(AuthState.error(getErrorMessage(error))),
+      (_) => emit(const AuthState.updated()),
+    );
+  }
+
+  Future<void> submitRecoverPassword(String code, String newPassword) async {
+    emit(const AuthState.loading());
+    final params = SubmitRecoverPasswordParams(
+      code: code,
+      newPassword: newPassword,
+    );
+    final either = await _repo.submitRecoverPassword(params);
+    either.fold(
+      (error) => emit(AuthState.error(getErrorMessage(error))),
+      (_) => emit(const AuthState.updated()),
+    );
+  }
 
   Future<void> tryLoginUser() async {
     emit(const AuthState.loading());

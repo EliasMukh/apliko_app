@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:apliko/features/authentication/domain/models/device.dart';
+import 'package:apliko/features/authentication/domain/models/recover_password_params.dart';
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:injectable/injectable.dart';
 import 'package:apliko/core/logical/abstract/models.dart';
@@ -34,6 +35,16 @@ class AuthRepoImpl extends IAuthRepository {
   @override
   bool tryAutoLogin() {
     return _localDS.tryAutoLoginUser();
+  }
+
+  @override
+  FutureEither<bool> recoverPassword(RecoverPasswordParams params) {
+    return sendRequest(() => _remoteDS.recoverPassword(params));
+  }
+
+  @override
+  FutureEither<bool> submitRecoverPassword(SubmitRecoverPasswordParams params) {
+    return sendRequest(() => _remoteDS.submitRecoverPassword(params));
   }
 
   @override

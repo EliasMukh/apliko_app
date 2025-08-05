@@ -8,8 +8,12 @@ import '../../../../core/logical/urls.dart';
 import '../../domain/models/auth_params.dart';
 import '../../domain/models/user.dart';
 import '../../domain/models/device.dart';
+import '../../domain/models/recover_password_params.dart';
 
 abstract class IAuthRemoteDS {
+  Future<bool> recoverPassword(RecoverPasswordParams params);
+  Future<bool> submitRecoverPassword(SubmitRecoverPasswordParams params);
+
   Future<String> getDeviceRegistrationKey(String deviceId);
   Future<UserModel> loginUser(AuthParams params);
   Future<UserModel> register(AuthParams params);
@@ -36,6 +40,52 @@ class AuthRemoteDataSourceImpl extends IAuthRemoteDS {
   final Dio dio;
 
   AuthRemoteDataSourceImpl(this.dio);
+
+  @override
+  Future<bool> recoverPassword(RecoverPasswordParams params) async {
+    try {
+      final response = await dio.post(
+        recoverPasswordUrl,
+        data: params.toJson(),
+      );
+
+      return response.statusCode == 200;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        throw AuthException(message: 'User not found');
+      } else if (e.response?.statusCode == 409) {
+        throw AuthException(message: 'Recovery error occurred');
+      }
+      throw AuthException(
+        message: 'Error requesting password recovery: ${e.message}',
+      );
+    } catch (e) {
+      throw AuthException(message: 'Error requesting password recovery: $e');
+    }
+  }
+
+  @override
+  Future<bool> submitRecoverPassword(SubmitRecoverPasswordParams params) async {
+    try {
+      final response = await dio.post(
+        submitRecoverPasswordUrl,
+        data: params.toJson(),
+      );
+
+      return response.statusCode == 200;
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        throw AuthException(message: 'Invalid request');
+      } else if (e.response?.statusCode == 404) {
+        throw AuthException(message: 'Code not found');
+      }
+      throw AuthException(
+        message: 'Error submitting password recovery: ${e.message}',
+      );
+    } catch (e) {
+      throw AuthException(message: 'Error submitting password recovery: $e');
+    }
+  }
 
   @override
   Future<UserModel> loginUser(AuthParams params) async {
@@ -172,6 +222,7 @@ class AuthRemoteDataSourceImpl extends IAuthRemoteDS {
         .toList();
   }
 
+  @override
   Future<Map<String, dynamic>> getSupersetDashboardLink(String deviceId) async {
     try {
       final response = await dio.get(supersetDashboardLinkUrl);

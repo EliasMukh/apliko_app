@@ -1,4 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore: duplicate_ignore
+// ignore: file_names
+// ignore_for_file: use_build_context_synchronously, file_names
 
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
@@ -251,6 +253,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                         decoration: InputDecoration(
                           hintText: 'Enter E_mail Please',
                           hintStyle: TextStyle(
+                            // ignore: deprecated_member_use
                             color: Colors.white.withOpacity(0.6),
                           ),
                           enabledBorder: OutlineInputBorder(
@@ -295,7 +298,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                 },
                                 activeColor: Colors.white,
                                 fillColor:
-                                    MaterialStateProperty.resolveWith<Color>(
+                                    WidgetStateProperty.resolveWith<Color>(
                                       (states) => Colors.white,
                                     ),
                               ),
@@ -318,7 +321,7 @@ class _DeviceDetailsPageState extends State<DeviceDetailsPage> {
                                 },
                                 activeColor: Colors.white,
                                 fillColor:
-                                    MaterialStateProperty.resolveWith<Color>(
+                                    WidgetStateProperty.resolveWith<Color>(
                                       (states) => Colors.white,
                                     ),
                               ),

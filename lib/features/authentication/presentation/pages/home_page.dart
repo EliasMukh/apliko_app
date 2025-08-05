@@ -49,15 +49,15 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // إضافة دالة للتحقق من الصلاحيات
-  bool _canManageAccess(String accessLevel) {
-    return accessLevel.toLowerCase() == 'owner';
-  }
+  // // إضافة دالة للتحقق من الصلاحيات
+  // bool _canManageAccess(String accessLevel) {
+  //   return accessLevel.toLowerCase() == 'owner';
+  // }
 
-  bool _canGetRegistrationKey(String accessLevel) {
-    final level = accessLevel.toLowerCase();
-    return level == 'owner' || level == 'full';
-  }
+  // bool _canGetRegistrationKey(String accessLevel) {
+  //   final level = accessLevel.toLowerCase();
+  //   return level == 'owner' || level == 'full';
+  // }
 
   Future<void> _fetchDevices() async {
     setState(() {
