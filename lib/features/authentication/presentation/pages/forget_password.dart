@@ -202,7 +202,7 @@ class __ForgetPasswordPageContentState
                     'Enter your email address and we will send you a link to reset your password',
                     style: TextStyle(
                       fontSize: 14,
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 168, 168, 168),
                       height: 1.4, // تقليل ارتفاع السطر
                     ),
                     textAlign: TextAlign.center,
@@ -221,15 +221,15 @@ class __ForgetPasswordPageContentState
                       }
                       return null;
                     },
-                    cursorColor: kPrimaryColor,
+                    cursorColor: Colors.white,
                     decoration: InputDecoration(
                       labelText: 'Email',
                       labelStyle: const TextStyle(
-                        color: Color(0xFF666666),
+                        color: Colors.white,
                         fontSize: 16,
                       ),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: kDarkColor,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
@@ -263,10 +263,7 @@ class __ForgetPasswordPageContentState
                       ),
                     ),
                     keyboardType: TextInputType.emailAddress,
-                    style: const TextStyle(
-                      color: Color(0xFF1A1A1A),
-                      fontSize: 16,
-                    ),
+                    style: const TextStyle(color: Colors.white, fontSize: 16),
                   ),
                   const SizedBox(height: 24), // تقليل المسافة
                   // زر الإرسال مع تصميم محسن
