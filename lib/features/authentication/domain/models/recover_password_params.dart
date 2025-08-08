@@ -8,6 +8,7 @@ class RecoverPasswordParams {
   }
 }
 
+//! يتم انشاء هذا الكلاس لتجهيز البيانات "التي نستلمها من العميل"  في بارامس اي في صندوق
 class SubmitRecoverPasswordParams {
   final String code;
   final String newPassword;

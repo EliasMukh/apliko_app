@@ -928,6 +928,9 @@ class _LoginPageState extends State<LoginPage>
               TextButton(
                 onPressed: () {
                   setState(() {
+                    emailController.clear();
+                    passwordController.clear();
+
                     isRegister = !isRegister;
                   });
                 },

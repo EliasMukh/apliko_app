@@ -25,6 +25,15 @@ class AuthRepoImpl extends IAuthRepository {
   AuthRepoImpl(this._remoteDS, this._localDS);
 
   @override
+  //! 📨 ريبوسيتوري يستقبل الصندوق بارامس من كيوبت
+  //! params = RecoverPasswordParams(email: "ahmed@example.com")
+  FutureEither<bool> recoverPassword(RecoverPasswordParams params) {
+    return sendRequest(
+      () => _remoteDS.recoverPassword(params),
+    ); //! (بارامس) النادل ريموتدس يمرر نفس الطلب
+  }
+
+  @override
   Future<Either<Failure, UserModel>> login(AuthParams params) async {
     return sendRequest<UserModel>(
       () => _remoteDS.loginUser(params),
@@ -38,12 +47,9 @@ class AuthRepoImpl extends IAuthRepository {
   }
 
   @override
-  FutureEither<bool> recoverPassword(RecoverPasswordParams params) {
-    return sendRequest(() => _remoteDS.recoverPassword(params));
-  }
-
-  @override
+  //! 📥 يستقبل بارامس من كيوبت
   FutureEither<bool> submitRecoverPassword(SubmitRecoverPasswordParams params) {
+    //! يرسل بارامس الى ريموتدس
     return sendRequest(() => _remoteDS.submitRecoverPassword(params));
   }
 

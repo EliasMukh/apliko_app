@@ -11,6 +11,7 @@ import '../../domain/models/device.dart';
 import '../../domain/models/recover_password_params.dart';
 
 abstract class IAuthRemoteDS {
+  //! 📋 عقد آخر: "يجب أن تستقبل بارامس وترجع Future<bool>"
   Future<bool> recoverPassword(RecoverPasswordParams params);
   Future<bool> submitRecoverPassword(SubmitRecoverPasswordParams params);
 
@@ -42,14 +43,18 @@ class AuthRemoteDataSourceImpl extends IAuthRemoteDS {
   AuthRemoteDataSourceImpl(this.dio);
 
   @override
+  //! // يأخذ البيانات ويرسلها للسيرفر
+  //!   📨 ريموتدس استقبل نفس الصندوق
+  //! // params = RecoverPasswordParams(email: "ahmed@example.com")
   Future<bool> recoverPassword(RecoverPasswordParams params) async {
     try {
+      //! 📤 نفتح الصندوق ونرسل محتواه للسيرفر
       final response = await dio.post(
         recoverPasswordUrl,
         data: params.toJson(),
       );
 
-      return response.statusCode == 200;
+      return response.statusCode == 200; //!    ✅ نتحقق من رد السيرفر
     } on DioException catch (e) {
       if (e.response?.statusCode == 404) {
         throw AuthException(message: 'User not found');
@@ -65,8 +70,10 @@ class AuthRemoteDataSourceImpl extends IAuthRemoteDS {
   }
 
   @override
+  //! بستقبل بارامس من ريبوسيتوري
   Future<bool> submitRecoverPassword(SubmitRecoverPasswordParams params) async {
     try {
+      //! يرسل جيسون الى السيرفر
       final response = await dio.post(
         submitRecoverPasswordUrl,
         data: params.toJson(),

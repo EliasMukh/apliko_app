@@ -34,21 +34,35 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> recoverPassword(String email) async {
     emit(const AuthState.loading());
+    //!  // 📦 نجهز البيانات في "صندوق"
     final params = RecoverPasswordParams(email: email);
-    final either = await _repo.recoverPassword(params);
+    //!
+    //! {email: "ahmed@example.com"} بارامس الآن يحتوي على:
+
+    final either = await _repo.recoverPassword(
+      params,
+    ); //!  نرسل الصندوق بارامس للريبوسيتيري
     either.fold(
       (error) => emit(AuthState.error(getErrorMessage(error))),
       (_) => emit(const AuthState.updated()),
     );
   }
 
+  //!  استقبال و تجهيز البيانات  يتم استقيال البيانات من العميل اي من ال يو أي
   Future<void> submitRecoverPassword(String code, String newPassword) async {
     emit(const AuthState.loading());
+    //!📦 نجهز البيانات في صندوق اكبر يحتوي على معلومتين
     final params = SubmitRecoverPasswordParams(
-      code: code,
-      newPassword: newPassword,
+      code: code, //!مثلا 123456
+      newPassword: newPassword, //! مثلا MyNewPassword123
     );
-    final either = await _repo.submitRecoverPassword(params);
+    //! params الآن = {code: "123456", newPassword: "MyNewPassword123"}
+    //.......................................................
+    //! submitRecoverPassword هذا هو العقد
+    //! اي الخلاصة اننا في الارسال نستخدم العقد الموجود في الابستراكت لاننا نقوم ب ارسال بارامس امااا في استلام البيانات من العميل نقوم بتجهيز تابع بنفس اسم العقد و نقوم بتجهيزه ل استلام بيانات محددة كما فعلنا في الاعلى
+    final either = await _repo.submitRecoverPassword(
+      params,
+    ); //!🚚  نرسل الصندوق الى الريبوسيتري و سوف نستقبل هذا الصندوق في ريبوسيتوري ايمبليمينت
     either.fold(
       (error) => emit(AuthState.error(getErrorMessage(error))),
       (_) => emit(const AuthState.updated()),

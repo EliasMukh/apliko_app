@@ -7,7 +7,9 @@ import '../models/user.dart';
 import '../models/recover_password_params.dart';
 
 abstract class IAuthRepository {
+  //!هذا مجرد "عقد" يقول: "يجب أن تستقبل بارامس وترجع FutureEither<bool>"
   FutureEither<bool> recoverPassword(RecoverPasswordParams params);
+  //! العقد يقول يجب ان نستلم بارامس من نوع
   FutureEither<bool> submitRecoverPassword(SubmitRecoverPasswordParams params);
 
   FutureEither<String> getDeviceRegistrationKey(String deviceId);
