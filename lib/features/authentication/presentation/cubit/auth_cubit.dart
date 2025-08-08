@@ -25,6 +25,14 @@ import '../../domain/models/recover_password_params.dart';
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
 
+/* 
+///! هاام هااام هااام 
+///! جميع الدوال في كيوبت تنتظر لاحد ان يستدعيها في واجهة المستخدم حتى تبدا عملية الانتقال من طبقة الى اخرى حتى يتم ارسالها الى السيرفر 
+ ///! 📥 هذه الدوال تنتظر أن يستدعيها أحد من الخارج
+ ///! ولا تعلم من أين ستأتي البيانات حتى يتم استدعاؤها
+
+*/
+
 @injectable
 class AuthCubit extends Cubit<AuthState> {
   final IAuthRepository _repo;
@@ -161,24 +169,80 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  //
   Future<List<DeviceModel>> getDevices() async {
     final either = await _repo.getDevices();
+
     return either.fold(
       (error) {
-        log('Error in fetching devices $error');
+        log('❌ Error in fetching devices: $error');
         emit(AuthState.error(getErrorMessage(error)));
-        return [];
+        return []; // قائمة فارغة في حالة الخطأ
       },
-      (deviceListJson) {
-        final devices =
-            deviceListJson
-                .map<DeviceModel>((json) => DeviceModel.fromJson(json))
-                .toList();
-        log('✅   ]Device ${devices.length} fetched');
+      (devices) {
+        // ✅ البيانات جاهزة بدون تحويلات!
+        log('✅ ${devices.length} devices fetched successfully');
         return devices;
       },
     );
   }
+
+  /*
+///! لو عندنا قائمة أرقام ونريد مضاعفتها:
+List<int> numbers = [1, 2, 3, 4, 5];
+
+///! الطريقة الطويلة:
+List<int> doubled = [];
+for (int number in numbers) {
+  doubled.add(number * 2);
+}
+///! النتيجة: [2, 4, 6, 8, 10]
+
+///! الطريقة المختصرة بـ map:
+List<int> doubled = numbers
+    .map<int>((number) => number * 2)
+    .toList();
+///! نفس النتيجة: [2, 4, 6, 8, 10]
+
+(deviceListJson) {
+  ///! deviceListJson = [JSON1, JSON2, JSON3]
+  
+  final devices = deviceListJson
+      .map<DeviceModel>((json) => DeviceModel.fromJson(json))
+      ///! لكل JSON → حوله إلى DeviceModel
+      .toList();
+       ///! بدلاً من Iterable
+      ///! اجعل النتيجة List
+     
+  
+  log('✅ Device ${devices.length} fetched');
+   ///!  طباعة عدد الأجهزة المحولة
+  
+  return devices;
+   ///!  إرجاع List<DeviceModel>
+}
+
+///! البداية
+deviceListJson = [
+  {"id": "1", "name": "Smart TV"},
+  {"id": "2", "name": "AC Unit"},
+  {"id": "3", "name": "Smart Light"}
+]
+
+///! بعد .map()
+Iterable<DeviceModel> = [
+  DeviceModel.fromJson({"id": "1", "name": "Smart TV"}),
+  DeviceModel.fromJson({"id": "2", "name": "AC Unit"}),
+  DeviceModel.fromJson({"id": "3", "name": "Smart Light"})
+]
+
+///! بعد .toList()
+List<DeviceModel> = [
+  DeviceModel(id: "1", name: "Smart TV"),
+  DeviceModel(id: "2", name: "AC Unit"),
+  DeviceModel(id: "3", name: "Smart Light")
+]
+*/
 
   Future<DeviceModel> addDevice(DeviceModel deviceModel) async {
     final either = await _repo.addDevice(deviceModel);

@@ -1,3 +1,5 @@
+import 'dart:developer' show log;
+
 import 'package:apliko/core/utils/funcs.dart';
 import 'package:apliko/core/utils/user_info.dart';
 import 'package:dio/dio.dart';
@@ -218,17 +220,63 @@ class AuthRemoteDataSourceImpl extends IAuthRemoteDS {
   }
 
   // New device methods implementation
+
   @override
   Future<List<DeviceModel>> getDevices() async {
-    final response = await dio.get(getDevicesUrl);
-    final data = response.data;
+    try {
+      //! ارسال غيت ريكويست للسيرفر
+      final response = await dio.get(getDevicesUrl);
+      //!                         ^^^^^^^^^^^^^
+      //!  'https://api.notiot.ru/api/devices'
 
-    final devicesList = data as List;
-    return devicesList
-        .map((deviceJson) => DeviceModel.fromJson(deviceJson))
-        .toList();
+      //!          await تعني انتظار حتى يرد السيرفر
+      //!          response يحتوي على رد السيرفر
+
+      if (response.statusCode == 200) {
+        //! 📥 استقبال البيانات من السيرفر
+        final List<dynamic> jsonList = response.data;
+
+        //! 🔄 تحويل واحد فقط: JSON → DeviceModel
+        final devices =
+            jsonList
+                .map<DeviceModel>((json) => DeviceModel.fromJson(json))
+                .toList();
+
+        log('🌐 Received ${devices.length} devices from server');
+        return devices;
+      } else {
+        throw AuthException(
+          message: 'Failed to fetch devices: ${response.statusCode}',
+        );
+      }
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 404) {
+        throw AuthException(message: 'Devices endpoint not found');
+      } else if (e.response?.statusCode == 500) {
+        throw AuthException(message: 'Server error occurred');
+      }
+      throw AuthException(message: 'Network error: ${e.message}');
+    } catch (e) {
+      throw AuthException(message: 'Unexpected error: $e');
+    }
   }
 
+  /*
+///! jsonList = [JSON1, JSON2, JSON3]
+
+///! .map() تعمل على كل عنصر:
+///! العنصر الأول:
+///! json = {"id": "1", "name": "Smart TV", "status": "online"}
+///! DeviceModel.fromJson(json) → DeviceModel(id: "1", name: "Smart TV", status: "online")
+
+///! العنصر الثاني:  
+///! json = {"id": "2", "name": "AC Unit", "status": "offline"}
+///! DeviceModel.fromJson(json) → DeviceModel(id: "2", name: "AC Unit", status: "offline")
+
+///! وهكذا لكل عنصر...
+
+///! .toList() تحول النتيجة إلى List<DeviceModel>
+*/
   @override
   Future<Map<String, dynamic>> getSupersetDashboardLink(String deviceId) async {
     try {

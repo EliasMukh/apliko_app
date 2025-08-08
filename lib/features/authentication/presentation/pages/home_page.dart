@@ -61,14 +61,14 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> _fetchDevices() async {
     setState(() {
-      _isLoading = true;
+      _isLoading = true; //! تظهر شاشة الانتظار
     });
 
     try {
-      // Fetch devices using AuthCubit or a dedicated DeviceCubit if you create one
+      //! معناه ان واجهة المستخدم يو اي ستقوم ب استدعاء دالة في الكيوبت لاطلاق حدث او تغيير حالة لكن لن ترسل اي بيانات اضافية مع هذا الطلب
       final devices = await context.read<AuthCubit>().getDevices();
       setState(() {
-        _devices = devices;
+        _devices = devices; //! استقبال قائمة الاجهزة
         _isLoading = false;
       });
     } catch (e) {

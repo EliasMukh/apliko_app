@@ -18,7 +18,10 @@ abstract class IAuthRepository {
   FutureEither<UserModel> loginSocial(LoginSocialType type);
   FutureEither<UserModel> register(AuthParams params);
   FutureEither<DeviceModel> addDevice(DeviceModel params);
-  FutureEither<List<Map<String, dynamic>>> getDevices();
+
+  //! هذا العقد لا يحتاج الى معاملات يستقبلها
+  FutureEither<List<DeviceModel>> getDevices();
+
   FutureEither<bool> refreshToken();
   FutureEither<UserModel> updateProfile(UserModel newUserModel);
   FutureEither<Map> uploadImage(String path);

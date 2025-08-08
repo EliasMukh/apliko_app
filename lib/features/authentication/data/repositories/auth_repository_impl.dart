@@ -160,11 +160,9 @@ class AuthRepoImpl extends IAuthRepository {
   }
 
   @override
-  FutureEither<List<Map<String, dynamic>>> getDevices() {
-    return sendRequest<List<Map<String, dynamic>>>(() async {
-      final devices = await _remoteDS.getDevices();
-      return devices.map((device) => device.toJson()).toList();
-    });
+  FutureEither<List<DeviceModel>> getDevices() {
+    // ✅ بساطة! مجرد تمرير بدون تحويلات
+    return sendRequest<List<DeviceModel>>(() => _remoteDS.getDevices());
   }
 
   @override
