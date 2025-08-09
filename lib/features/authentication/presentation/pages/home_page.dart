@@ -68,8 +68,9 @@ class _HomePageState extends State<HomePage> {
       //! معناه ان واجهة المستخدم يو اي ستقوم ب استدعاء دالة في الكيوبت لاطلاق حدث او تغيير حالة لكن لن ترسل اي بيانات اضافية مع هذا الطلب
       final devices = await context.read<AuthCubit>().getDevices();
       setState(() {
+        //! حفظ قائمة الاجهزة المستلمة
         _devices = devices; //! استقبال قائمة الاجهزة
-        _isLoading = false;
+        _isLoading = false; //! اخفاء دائرة التحميل
       });
     } catch (e) {
       setState(() {
@@ -384,6 +385,7 @@ class _HomePageState extends State<HomePage> {
     final isSmallScreen = size.width < 600;
 
     // Calculate grid crossAxisCount based on screen width
+    //! تحديد عدد الأعمدة حسب حجم الشاشة
     int crossAxisCount = 1;
     if (size.width > 300) crossAxisCount = 2;
     if (size.width > 600) crossAxisCount = 3;
@@ -507,20 +509,26 @@ class _HomePageState extends State<HomePage> {
                       ),
 
                       // Devices grid
+                      //! انشاء الشبكة من المربعات لعرض الاجهزة
                       Expanded(
                         child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: crossAxisCount,
-                                crossAxisSpacing: isSmallScreen ? 8 : 10,
-                                mainAxisSpacing: isSmallScreen ? 8 : 10,
-                                childAspectRatio: 1.0,
-                              ),
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount:
+                                crossAxisCount, //! // عدد الأعمدة في الشاشة يعتمد على عرض الشاشة كما وضحنا في الاعلى
+                            crossAxisSpacing:
+                                isSmallScreen ? 8 : 10, //! المسافة الأفقية
+                            mainAxisSpacing:
+                                isSmallScreen ? 8 : 10, //! المسافة العمودية
+                            childAspectRatio: 1.0, //! نسبة العرض للارتفاع
+                          ),
                           itemCount:
-                              _devices.length + 1, // +1 for the add button
+                              _devices.length +
+                              1, //! عدد العناصر (+1 لزر الإضافة الموجود في اول مربع +)
+
                           itemBuilder: (context, index) {
-                            // The first cell is the "Add" button
+                            //!  هنا يتم بناء كل مربع
                             if (index == 0) {
+                              //! + المربع الاول مربع الاضافة
                               return GestureDetector(
                                 onTap: _showAddDeviceDialog,
                                 child: Container(
@@ -541,8 +549,10 @@ class _HomePageState extends State<HomePage> {
                               );
                             }
 
-                            // Display devices
-                            final device = _devices[index - 1];
+                            //!  باقي المربعات = الأجهزة
+                            //! اهم سطر
+                            final device =
+                                _devices[index - 1]; //! الجهاز الحالي
                             return Container(
                               decoration: BoxDecoration(
                                 border: Border.all(
@@ -560,6 +570,7 @@ class _HomePageState extends State<HomePage> {
                                 children: [
                                   // في جزء عرض الأجهزة في GridView.builder
                                   // نستبدل عرض الحالة بعرض مستوى الصلاحية:
+                                  //! مستوى الصلاحية
                                   Container(
                                     padding: EdgeInsets.all(12),
                                     decoration: BoxDecoration(
@@ -578,7 +589,7 @@ class _HomePageState extends State<HomePage> {
                                       maxLines: 2,
                                     ),
                                   ),
-                                  // Device name and status
+                                  //! Device name and status
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
@@ -594,6 +605,7 @@ class _HomePageState extends State<HomePage> {
                                           overflow: TextOverflow.ellipsis,
                                         ),
                                       ),
+                                      //! عرض حالة الجهاز
                                       Container(
                                         width: 10,
                                         height: 10,
@@ -604,6 +616,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ],
                                   ),
+                                  //! عرض وصف الجهاز
                                   Text(
                                     device.description,
                                     style: TextStyle(
