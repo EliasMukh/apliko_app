@@ -30,7 +30,7 @@ class NoInternetScreen extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24.0),
                 child: Text(
-                  'Pleasr check your connecttion and try again',
+                  'Please check your connection and try again',
 
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14, color: Colors.white),
