@@ -46,6 +46,9 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    // فحص حالة الاتصال الأولية عند بدء التطبيق
+    _checkInitialConnection();
+
     // مستمع لحالة الاتصال لعرض/إخفاء شاشة عدم الاتصال
     InternetInfo.internetConnection.onStatusChange.listen((status) {
       if (!mounted) return;
@@ -56,6 +59,27 @@ class _MyAppState extends State<MyApp> {
         _dismissNoInternetIfAny();
       }
     });
+  }
+
+  Future<void> _checkInitialConnection() async {
+    try {
+      final hasInternet = await InternetInfo.initState;
+      if (!hasInternet && !_noInternetShown) {
+        // تأخير قصير للتأكد من أن التطبيق جاهز
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (mounted) {
+          _showNoInternet();
+        }
+      }
+    } catch (e) {
+      // في حالة الخطأ، نفترض عدم وجود اتصال
+      if (mounted && !_noInternetShown) {
+        await Future.delayed(const Duration(milliseconds: 500));
+        if (mounted) {
+          _showNoInternet();
+        }
+      }
+    }
   }
 
   @override
