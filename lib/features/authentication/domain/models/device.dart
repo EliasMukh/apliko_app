@@ -15,6 +15,13 @@ class DeviceModel {
   Map<String, dynamic> params;
   String userAccessLevel;
 
+  //! هذه دالة مصنع (factory method)
+  //! تحول البيانات القادمة من السيرفر (JSON)
+  //! إلى كائن Dart (DeviceModel).
+
+  //! السيناريو: GET request
+  //!من السيرفر → السيرفر يرجع JSON → تريد تحويله إلى كائن يمكن استخدامه داخل التطبيق.
+
   factory DeviceModel.fromJson(Map<String, dynamic> json) {
     return DeviceModel(
       id: json['id'] ?? '',
@@ -41,3 +48,7 @@ class DeviceModel {
     };
   }
 }
+
+//! fromJson = استقبال من السيرفر → تحويل JSON إلى كائن Dart
+
+//! toJson = إرسال إلى السيرفر → تحويل كائن Dart إلى JSON

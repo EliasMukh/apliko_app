@@ -20,7 +20,7 @@ abstract class IAuthRepository {
   FutureEither<DeviceModel> addDevice(DeviceModel params);
 
   //! هذا العقد لا يحتاج الى معاملات يستقبلها
-  FutureEither<List<DeviceModel>> getDevices();
+  FutureEither<List<DeviceModel>> getDevices();//////////////////////////////////////////////////////////////////////////////////////////
 
   FutureEither<bool> refreshToken();
   FutureEither<UserModel> updateProfile(UserModel newUserModel);

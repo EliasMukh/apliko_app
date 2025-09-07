@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:apliko/core/UI/router/router.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 
 import 'core/UI/styles/colors.dart';
 import 'core/utils/lang.dart';
+import 'core/utils/internet_info.dart';
 import 'features/authentication/presentation/cubit/auth_cubit.dart';
+import 'features/authentication/presentation/pages/no_internet.dart';
 import 'injectable/injecter.dart';
 import 'main_config.dart';
 
@@ -37,9 +40,22 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool _noInternetShown = false;
+  Route<dynamic>? _noInternetRoute;
+
   @override
   void initState() {
     super.initState();
+    // مستمع لحالة الاتصال لعرض/إخفاء شاشة عدم الاتصال
+    InternetInfo.internetConnection.onStatusChange.listen((status) {
+      if (!mounted) return;
+      final isConnected = status == InternetStatus.connected;
+      if (!isConnected && !_noInternetShown) {
+        _showNoInternet();
+      } else if (isConnected && _noInternetShown) {
+        _dismissNoInternetIfAny();
+      }
+    });
   }
 
   @override
@@ -77,5 +93,42 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
     );
+  }
+
+  void _showNoInternet() {
+    final navigator = MyApp.appRouter.navigatorKey.currentState;
+    if (navigator == null) return;
+    if (_noInternetRoute != null) return;
+    final route = PageRouteBuilder(
+      opaque: true,
+      pageBuilder:
+          (_, __, ___) => PopScope(
+            canPop: false,
+            child: NoInternetScreen(
+              onRetry: () async {
+                final hasInternet = await InternetInfo.initState;
+                if (hasInternet) {
+                  _dismissNoInternetIfAny();
+                }
+              },
+            ),
+          ),
+      transitionsBuilder:
+          (_, animation, __, child) =>
+              FadeTransition(opacity: animation, child: child),
+    );
+    _noInternetRoute = route;
+    _noInternetShown = true;
+    navigator.push(route);
+  }
+
+  void _dismissNoInternetIfAny() {
+    final navigator = MyApp.appRouter.navigatorKey.currentState;
+    if (navigator == null) return;
+    if (_noInternetRoute != null) {
+      navigator.removeRoute(_noInternetRoute!);
+      _noInternetRoute = null;
+      _noInternetShown = false;
+    }
   }
 }

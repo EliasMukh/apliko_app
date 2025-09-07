@@ -49,16 +49,6 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
-  // // إضافة دالة للتحقق من الصلاحيات
-  // bool _canManageAccess(String accessLevel) {
-  //   return accessLevel.toLowerCase() == 'owner';
-  // }
-
-  // bool _canGetRegistrationKey(String accessLevel) {
-  //   final level = accessLevel.toLowerCase();
-  //   return level == 'owner' || level == 'full';
-  // }
-
   Future<void> _fetchDevices() async {
     setState(() {
       _isLoading = true; //! تظهر شاشة الانتظار
@@ -251,7 +241,7 @@ class _HomePageState extends State<HomePage> {
                           final device = await context
                               .read<AuthCubit>()
                               .addDevice(deviceModel);
-
+ 
                           // Close loading dialog
                           Navigator.pop(context);
 

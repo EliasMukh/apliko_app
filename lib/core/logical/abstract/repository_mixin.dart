@@ -7,7 +7,61 @@ import 'package:dio/dio.dart';
 import '../errors/error_model.dart';
 import '../errors/failures.dart';
 
+//!الـ Generic <T>
+//! <T> يعني: "النوع الذي أعمل معه سيكون متغيرًا".
+
+//! مثال:
+//!
+//! نريد جلب قائمة أجهزة → T = List<DeviceModel>
+//!
+//! نريد جلب مستخدم واحد → T = User
+//!
+//! الفكرة: لا نحتاج كتابة دالة مختلفة لكل نوع بيانات.
+
+//! نوع الإرجاع
+//! Future<Either<Failure, T>>
+//! Future → العملية غير متزامنة، أي تحتاج await.
+
+//! Either<Failure, T> → النتيجة يمكن أن تكون:
+
+//! Right(T) = نجاح → البيانات موجودة
+
+//! Left(Failure) = فشل → حدث خطأ
 Future<Either<Failure, T>> sendRequest<T>(
+  //! تمرير دالة كمعامل
+  //! Future<T> Function() call
+  //! هنا نمرر دالة أخرى إلى sendRequest.
+
+  //! الدالة المرسلة تقوم بالطلب الفعلي (مثلاً _remoteDS.getDevices()).
+
+  //! الفائدة:
+
+  //! sendRequest لن يعرف ما هو نوع البيانات أو كيف تحصل عليها.
+
+  //! كل ما عليه فعله: "نفذ الدالة، انتظر النتيجة، عالج الأخطاء"
+
+  /*
+/   //!مثال صغير:
+Future<int> getNumber() async {
+  return 42;
+}
+
+Future<void> run() async {
+  final result = await sendRequest<int>(() => getNumber());
+  print(result);
+}
+*/
+
+  //!  المعاملات الاختيارية {}
+  //! {
+  //!   Function(T)? cacheCall,
+  //!   bool checkToRevokSession = true
+  //! }
+  //! الأقواس {} تعني Named Parameters → يمكن تمريرها بالاسم أو تجاهلها.
+
+  //! cacheCall → دالة اختيارية، لتخزين البيانات بعد نجاح الطلب.
+
+  //! checkToRevokSession → قيمة افتراضية، تتحكم بسلوك الخطأ 401.
   Future<T> Function() call, {
   Function(T)? cacheCall,
   bool checkToRevokSession = true,
@@ -59,3 +113,50 @@ Future<Either<Failure, T>> sendRequest<T>(
     return Left(InternetFailure());
   }
 }
+
+//! 🔹 HomePage (initState)
+//!         |
+//!         v
+//! 🔹 _fetchDevices()
+//!         |
+//!         v
+//! final devices = await context.read<AuthCubit>().getDevices()
+//!         |
+//!         v
+//! 🔹 AuthCubit.getDevices()
+//!         |
+//!         v
+//! final either = await _repo.getDevices()
+//!         |
+//!         v
+//! 🔹 AuthRepoImpl.getDevices()
+//!         |
+//!         v
+//! return sendRequest(() => _remoteDS.getDevices())
+//!         |
+//!         v
+//! 🔹 sendRequest<T>(...)
+//!         |
+//!         v
+//! await _remoteDS.getDevices()
+//!         |
+//!         v
+//! 🔹 AuthRemoteDS.getDevices()
+//!         |
+//!         v
+//! 🌍 API Server (يرجع JSON بالـ Devices)
+//!         |
+//!         v
+//! 🔹 sendRequest يرجع Either<Failure, List<DeviceModel>>
+//!         |
+//!         v
+//! 🔹 AuthRepoImpl.getDevices() يرجع نفس الـ Either
+//!         |
+//!         v
+//! 🔹 AuthCubit.getDevices() يحول النتيجة → List<DeviceModel> أو []
+//!         |
+//!         v
+//! 🔹 _fetchDevices() يحفظ القائمة في _devices و يعمل setState()
+//!         |
+//!         v
+//! ✅ واجهة HomePage تتحدث وتعرض الأجهزة

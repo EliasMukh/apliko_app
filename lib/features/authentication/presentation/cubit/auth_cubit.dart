@@ -169,10 +169,12 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  //
-  Future<List<DeviceModel>> getDevices() async {
-    final either = await _repo.getDevices();
+  //!هي async
+  //! لأنها تنتظر جلب البيانات من الـ
+  //!Repository.                         ><<>><
+  Future<List<DeviceModel>> getDevices() async {/////////////////////////////////////////////////////////////////////////////////////
 
+    final either = await _repo.getDevices();
     return either.fold(
       (error) {
         log('❌ Error in fetching devices: $error');
@@ -244,6 +246,10 @@ List<DeviceModel> = [
 ]
 */
 
+  
+  
+  
+  
   Future<DeviceModel> addDevice(DeviceModel deviceModel) async {
     final either = await _repo.addDevice(deviceModel);
     return either.fold(
@@ -396,3 +402,50 @@ List<DeviceModel> = [
   }
 }
 //test
+
+//! 🔹 HomePage (initState)
+//!         |
+//!         v
+//! 🔹 _fetchDevices()
+//!         |
+//!         v
+//! final devices = await context.read<AuthCubit>().getDevices()
+//!         |
+//!         v
+//! 🔹 AuthCubit.getDevices()
+//!         |
+//!         v
+//! final either = await _repo.getDevices()
+//!         |
+//!         v
+//! 🔹 AuthRepoImpl.getDevices()
+//!         |
+//!         v
+//! return sendRequest(() => _remoteDS.getDevices())
+//!         |
+//!         v
+//! 🔹 sendRequest<T>(...)
+//!         |
+//!         v
+//! await _remoteDS.getDevices()
+//!         |
+//!         v
+//! 🔹 AuthRemoteDS.getDevices()
+//!         |
+//!         v
+//! 🌍 API Server (يرجع JSON بالـ Devices)
+//!         |
+//!         v
+//! 🔹 sendRequest يرجع Either<Failure, List<DeviceModel>>
+//!         |
+//!         v
+//! 🔹 AuthRepoImpl.getDevices() يرجع نفس الـ Either
+//!         |
+//!         v
+//! 🔹 AuthCubit.getDevices() يحول النتيجة → List<DeviceModel> أو []
+//!         |
+//!         v
+//! 🔹 _fetchDevices() يحفظ القائمة في _devices و يعمل setState()
+//!         |
+//!         v
+//! ✅ واجهة HomePage تتحدث وتعرض الأجهزة
